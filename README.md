@@ -1,1 +1,3 @@
-### various mini js projects and lessons from bootcamp courses
+# JS Boot
+
+various mini js projects and lessons from bootcamp courses
