@@ -52,4 +52,12 @@ function getNameByPrice(goods, price) {
 }
 console.table(getNameByPrice(cart, 500));
 
-// remove duplicates 
+// remove duplicates
+let arr1 = [1, 2, 3, 1, 1, 5, 6, 6, 7, 6];
+let newArr = arr1.reduce((arr, cur) => {
+	if (arr.includes(cur) === false) {
+		arr.push(cur);
+	}
+	return arr;
+}, []);
+console.log(newArr);
