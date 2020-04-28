@@ -52,7 +52,7 @@ function getNameByPrice(goods, price) {
 }
 console.table(getNameByPrice(cart, 500));
 
-// remove duplicates
+// remove duplicate array elements
 let arr1 = [1, 2, 3, 1, 1, 5, 6, 6, 7, 6];
 let newArr = arr1.reduce((arr, cur) => {
 	if (arr.includes(cur) === false) {
@@ -61,3 +61,21 @@ let newArr = arr1.reduce((arr, cur) => {
 	return arr;
 }, []);
 console.log(newArr);
+
+//remove duplicate object elements
+let cart2 = [
+	{ name: "iphone", price: 900 },
+	{ name: "imac", price: 1500 },
+	{ name: "ipad", price: 360 },
+	{ name: "sumsung s12", price: 875 },
+	{ name: "ipad", price: 360 },
+	{ name: "imac", price: 1500 },
+];
+function filterGoods(goods) {
+	return goods.reduce((arr, cur) => {
+		let find = arr.find((item) => item.name === cur.name);
+		if (!find) arr.push(cur);
+		return arr;
+	}, []);
+}
+console.log(filterGoods(cart2));
