@@ -7,7 +7,7 @@ function arrayCount(array, item) {
 		return total;
 	}, 0);
 }
-console.log(arrayCount(arr, 6));
+//console.log(arrayCount(arr, 6));
 
 //find the max of an array
 function arrayMax(array) {
@@ -15,7 +15,7 @@ function arrayMax(array) {
 		return prev > cur ? prev : cur;
 	});
 }
-console.log(arrayMax(arr));
+//console.log(arrayMax(arr));
 
 //find the most expensive item in shopping cart
 
@@ -31,7 +31,7 @@ function maxPrice(goods) {
 		return prev.price > cur.price ? prev : cur;
 	});
 }
-console.log(maxPrice(cart));
+//console.log(maxPrice(cart));
 
 // summing up the prices in shopping cart
 function sum(goods) {
@@ -39,7 +39,7 @@ function sum(goods) {
 		return (total += cur["price"]);
 	}, 0);
 }
-console.log(sum(cart));
+//console.log(sum(cart));
 
 // find the names of items that cost more than $500
 function getNameByPrice(goods, price) {
@@ -50,7 +50,7 @@ function getNameByPrice(goods, price) {
 		}, [])
 		.map((item) => item.name);
 }
-console.table(getNameByPrice(cart, 500));
+//console.table(getNameByPrice(cart, 500));
 
 // remove duplicate array elements
 let arr1 = [1, 2, 3, 1, 1, 5, 6, 6, 7, 6];
@@ -60,7 +60,7 @@ let newArr = arr1.reduce((arr, cur) => {
 	}
 	return arr;
 }, []);
-console.log(newArr);
+//console.log(newArr);
 
 //remove duplicate object elements
 let cart2 = [
@@ -78,4 +78,4 @@ function filterGoods(goods) {
 		return arr;
 	}, []);
 }
-console.log(filterGoods(cart2));
+// console.log(filterGoods(cart2));
