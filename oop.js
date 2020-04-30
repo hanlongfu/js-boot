@@ -115,6 +115,7 @@ let shopping = {
 	item: 4,
 	price: 50,
 };
+
 //检测对象的属性 Object.getOwnPropertyDescriptor(obj, "property")
 // console.log(
 // 	JSON.stringify(Object.getOwnPropertyDescriptor(shopping, "user"), null, 2)
@@ -270,3 +271,113 @@ let proxy = new Proxy(lessons, {
 	},
 });
 console.log(proxy[1]);
+
+function oss(options) {
+	if (!options.hasOwnProperty("host")) {
+		throw new Error("must have host");
+	}
+}
+oss({ user: admin });
+
+const lessons = [
+	{ title: "responsive", category: "css" },
+	{ title: "mysql", category: "mysql" },
+	{ title: "php", category: "php" },
+];
+
+let res = lessons.reduce((obj, cur, idx) => {
+	obj[`${cur["category"]}-${idx}`] = cur;
+	return obj;
+}, {});
+
+console.log(JSON.stringify(res, null, 2));
+
+//merge two objects
+let hd = Object.assign({ a: 1 }, { b: 2 });
+//console.log(hd);
+
+function upload(params) {
+	let options = { size: 19999 };
+
+	options = Object.assign(options, params);
+	//console.log(JSON.stringify(options, null, 2))
+}
+upload({ size: 99, type: "rock" });
+
+// merge two objects
+let combinedObj = Object.assign(lessons, hd);
+//console.log(combinedObj);
+
+let deepObj = {
+	name: "jason",
+	user: {
+		name: "MLK",
+	},
+	arr: [],
+};
+
+//浅拷贝 - 引用拷贝
+//深拷贝 - 值拷贝
+function copy(obj) {
+	let res = {};
+	for (const key in obj) {
+		res[key] = typeof obj[key] == "object" ? copy(obj[key]) : obj[key];
+	}
+	return res;
+}
+
+let deepObjCopy = copy(deepObj);
+console.log(deepObjCopy);
+// deepObjCopy.user.name = "michael jordan";
+deepObjCopy.arr.push("abc");
+
+//深拷贝 - 拷贝数组和对象
+function copyGeneral(obj) {
+	let res = obj instanceof Array ? [] : {};
+	for (const [key, value] of Object.entries(obj)) {
+		res[key] = typeof value == "object" ? copyGeneral(value) : value;
+	}
+	return res;
+}
+
+let deepObjCopy = copyGeneral(deepObj);
+//console.log(JSON.stringify(deepObj, null, 2));
+//console.log(JSON.stringify(deepObjCopy, null, 2));
+
+//构造函数
+function User(name) {
+	this.name = name;
+	this.show = function () {
+		console.log(this.name);
+	};
+}
+
+let xj = new User("湘军");
+console.log(xj);
+xj.show();
+
+//封装和抽象
+function User(name, age) {
+	let data = { name, age };
+	this.show = function () {
+		console.log(data.name + this.info());
+	};
+	this.info = function () {
+		return data.age > 50 ? "old age" : "young age";
+	};
+}
+
+let xj = new User("湘军", 35);
+xj.show();
+console.log(xj);
+
+function user(name) {
+	return {
+		name,
+		show: function () {
+			console.log(this.name);
+		},
+	};
+}
+let xj = user("jason");
+xj.show();
