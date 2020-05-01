@@ -1,3 +1,4 @@
+/*
 let arr = ["houdunren"];
 let arr2 = arr.concat("向军");
 
@@ -71,3 +72,52 @@ let xj = {
 	},
 };
 //console.log(hd.max.apply(xj));
+
+function User(name){
+  this.name = name;
+}
+User.prototype = {
+  constructor: User, 
+  show(){
+    console.log(this.name);
+  },
+  get(){
+    console.log('get....');
+  }
+};
+let jason = new User('jason');
+let michael = new User('michael');
+
+let user = {
+	show() {
+		return this.name;
+	},
+};
+let hd = Object.create(user, {
+	name: {
+		value: "houdunren",
+	},
+});
+console.log(user.isPrototypeOf(hd));
+
+function User() {}
+User.prototype = {
+	constructor: User,
+	name() {
+		console.log(this.name);
+	},
+};
+function Admin() {
+	console.log("admin.role");
+}
+function Member() {
+	console.log("member.role");
+}
+
+//Admin继承User
+Admin.prototype.__proto__ = User.prototype;
+
+//Member继承User
+Member.prototype.__proto__ = User.prototype;
+
+*/
