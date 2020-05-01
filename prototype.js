@@ -120,4 +120,51 @@ Admin.prototype.__proto__ = User.prototype;
 //Member继承User
 Member.prototype.__proto__ = User.prototype;
 
+class User {
+	constructor(name) {
+		this.name = name;
+	}
+	show() {}
+}
+let u = new User("houdunren");
+console.log(Object.getOwnPropertyNames(u));
+
+function HD(name) {
+	this.name = name;
+}
+let h = new HD("后盾");
+console.log(Object.getOwnPropertyNames(h));
+
+class User {
+	site = "houren.com";
+	constructor(name) {
+		this.name = name;
+	}
+	get() {
+		return this.name;
+	}
+	changeSite(value) {
+		this.site = value;
+	}
+	show() {
+		return `${this.site}: ${this.name}`;
+	}
+}
+let user = new User("jason");
+user.changeSite("gogo.com");
+console.log(user.show());
+
+
+class User{
+  constructor(name){
+    this.name = name;
+  }
+  show(){}
+}
+let u = new User('jason');
+console.log(JSON.stringify(Object.getOwnPropertyDescriptors(User.prototype, 'show'), null, 2));
+for(const key in u){
+  console.log(key);
+}
+
 */
