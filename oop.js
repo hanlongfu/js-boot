@@ -4,7 +4,6 @@ let user = {
 	occupation: "singer",
 	"net worth": 10000000,
 };
-
 // console.log(user["age"]);
 
 for (const key in user) {
@@ -381,3 +380,43 @@ function user(name) {
 }
 let xj = user("jason");
 xj.show();
+
+//json
+let hd = {
+	title: "houdunren",
+	url: "houdunren.com",
+	teacher: {
+		name: "jason",
+		age: 40,
+		height: 185,
+	},
+};
+//json.stringify(obj, [property1, property2], tabsize)
+let json = JSON.stringify(hd, ["title", "url", "teacher"], 4);
+console.log(json);
+
+let hd2 = {
+	title: "houdunren",
+	url: "houdunren.com",
+	teacher: {
+		name: "jason",
+		age: 40,
+		height: 185,
+	},
+	//toJSON自定义返回的格式
+	toJSON: function () {
+		return {
+			title: this.title,
+			teacher: this.teacher.name,
+		};
+	},
+};
+//console.log(JSON.stringify(hd2, ["title", "teacher"], 2));
+
+let obj = JSON.parse(json, (key, value) => {
+	if (key === "title") {
+		value = "[houdun]-" + value;
+	}
+	return value;
+});
+console.log(obj);
