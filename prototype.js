@@ -167,4 +167,58 @@ for(const key in u){
   console.log(key);
 }
 
+
+class User {
+	name = "Jason Mraz";
+	sayHi() {
+		console.log(`hello, ${this.name}`);
+	}
+}
+let user1 = new User();
+user1.sayHi();
+// alert(User.prototype.sayHi);
+// alert(User.prototype.name)
+console.dir(User.prototype)
+
+class Article {
+  planet = "earth";
+  constructor(title, date) {
+    this.title = title;
+    this.date = date;
+  }
+  static compare(articleA, articleB) {
+    return articleA.date - articleB.date;
+  }
+}
+
+let articles = [
+  new Article('html', new Date(2019, 1, 1)), 
+  new Article('css', new Date(2019, 0, 1))
+];
+
+console.log(articles[0].planet);
+
+class Animal{
+  static planet = "Earth";
+  constructor(name, speed){
+    this.speed = speed;
+    this.name = name;
+  }
+   static run(speed) {
+    //this.speed += speed;
+    console.log(`jason runs with speed ${speed}`);
+  }
+}
+
+class Rabbit extends Animal {
+  hide(){
+    console.log(`${this.name} hides`);
+  }
+}
+
+let rabbit = new Rabbit('monkey', 50);
+// error because static methods are not available to instances of a class
+//console.log(rabbit.run(50))      
+console.log(Rabbit.run(50));
+
 */
