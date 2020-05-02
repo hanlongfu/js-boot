@@ -221,4 +221,28 @@ let rabbit = new Rabbit('monkey', 50);
 //console.log(rabbit.run(50))      
 console.log(Rabbit.run(50));
 
+// 类的静态属性 
+//    1) static property = value; 新写法
+//    2) Class.property = value;  老写法
+// 类的实例属性
+//    1）property = value;        新写法
+//    2）constructor(p){this.p = p} 老写法
+
+class MyClass {
+	//类的实例属性
+	myProp = 42;
+	//类的静态属性
+	static tProp = "static methods";
+}
+
+class Sub extends MyClass {
+	showMyProp() {
+		console.log(this.myProp);
+	}
+}
+
+let c1 = new Sub();
+console.log(c1.myProp); //42
+console.log(c1.tProp); //undefined
+
 */
