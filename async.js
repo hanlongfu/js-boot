@@ -24,6 +24,21 @@ const getRecipe = (recId) => {
 	});
 };
 
+//fetch a recipe that's related to the author
+//of the first recipe
+const getRelated = (publisher) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(
+			(pub) => {
+				const recipe = { title: "Italizan Pizza", publisher: "Seton Hall" };
+				resolve(`${pub}: ${recipe.title}`);
+			},
+			1500,
+			publisher
+		);
+	});
+};
+
 //consume promise
 //.then is a handler function and inside it a callback function
 //that will execute when the promise is successful.
@@ -35,6 +50,10 @@ getIds
 	})
 	.then((recipe) => {
 		console.log(recipe); //this logs the above result
+		return getRelated("Seton Hall");
+	})
+	.then((recipe) => {
+		console.group(recipe);
 	})
 	.catch((error) => {
 		console.log("Error");
