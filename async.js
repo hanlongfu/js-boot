@@ -43,18 +43,31 @@ const getRelated = (publisher) => {
 //.then is a handler function and inside it a callback function
 //that will execute when the promise is successful.
 //the argument - "Ids" - is the result of the successful promise
-getIds
-	.then((Ids) => {
-		console.log(Ids);
-		return getRecipe(Ids[2]); // return 456: Fresh Tomato Pasta
-	})
-	.then((recipe) => {
-		console.log(recipe); //this logs the above result
-		return getRelated("Seton Hall");
-	})
-	.then((recipe) => {
-		console.group(recipe);
-	})
-	.catch((error) => {
-		console.log("Error");
-	});
+// getIds
+// 	.then((Ids) => {
+// 		console.log(Ids);
+// 		return getRecipe(Ids[2]); // return 456: Fresh Tomato Pasta
+// 	})
+// 	.then((recipe) => {
+// 		console.log(recipe); //this logs the above result
+// 		return getRelated("Seton Hall");
+// 	})
+// 	.then((recipe) => {
+// 		console.group(recipe);
+// 	})
+// 	.catch((error) => {
+// 		console.log("Error");
+// 	});
+
+// a new way of consuming promises
+async function getRecipesAW() {
+	const Ids = await getIds; // Ids = [523, 994, 456, 123]
+	console.log(Ids);
+	const recipe = await getRecipe(Ids[2]);
+	console.log(recipe);
+	const related = await getRelated("Seton Hall");
+	console.log(related);
+
+	return related;
+}
+getRecipesAW().then((recipe) => console.log(recipe));
