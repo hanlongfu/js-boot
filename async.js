@@ -60,14 +60,26 @@ const getRelated = (publisher) => {
 // 	});
 
 // a new way of consuming promises
-async function getRecipesAW() {
-	const Ids = await getIds; // Ids = [523, 994, 456, 123]
-	console.log(Ids);
-	const recipe = await getRecipe(Ids[2]);
-	console.log(recipe);
-	const related = await getRelated("Seton Hall");
-	console.log(related);
+// async function getRecipesAW() {
+// 	const Ids = await getIds; // Ids = [523, 994, 456, 123]
+// 	console.log(Ids);
+// 	const recipe = await getRecipe(Ids[2]);
+// 	console.log(recipe);
+// 	const related = await getRelated("Seton Hall");
+// 	console.log(related);
 
-	return related;
-}
-getRecipesAW().then((recipe) => console.log(recipe));
+// 	return related;
+// }
+// getRecipesAW().then((recipe) => console.log(recipe));
+
+fetch(
+	"https://crossorigin.me/https://www.metaweather.com/api/location/search/?lattlong=50.068,-5.316"
+)
+	.then((result) => {
+		console.log(result);``
+		return result.json();
+	})
+	.then((data) => {
+		console.log(data);
+	})
+	.catch((error) => console.log(error));
