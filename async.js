@@ -1,5 +1,6 @@
 //executor function used to inform the promise
 //whether an execution has been successful
+/*
 const getIds = new Promise((resolve, reject) => {
 	// use setTimeout to simulate async tasks
 	setTimeout(() => {
@@ -119,5 +120,20 @@ let dataLd;
 getWeatherAW(44418).then(data => {
 	dataLd = data;
 	console.log(dataLd);
+	console.log(dataLd);
 });
 
+*/
+
+const promise = new Promise((resolve, reject) => {
+	if (true) {
+		resolve("stuff worked!");
+	} else {
+		reject("Error, it broke");
+	}
+});
+
+promise
+	.then((result) => result + "!")
+	.catch(() => console.log("errror!"))
+	.then((result3) => console.log(result3 + "!"));
