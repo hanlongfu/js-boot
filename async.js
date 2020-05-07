@@ -88,3 +88,36 @@ function getWeather(woeid) {
 		.catch((error) => console.log(error));
 }
 getWeather(2487956);
+
+
+// remember that async function returns a promise
+async function getWeatherAW(woeid){
+	try{
+		const result = await fetch("https://crossorigin.me/https://www.metaweather.com/api/location/${woeid}/");
+		const data  = await result.json;
+		const tomorrow = data.consolidated_weather[1];
+		console.log(
+			`Temperatures in ${data.title} stay between ${today.min_temp} and ${today.max_temp}.`
+		);
+		// "data" will be the resolved value of that promise
+		return data;
+	}
+	catch(error){
+		alert(error);
+	
+}
+
+getWeatherAW(2487956);
+const dataLondon = getWeatherAW(44418);
+
+//this doesn't work because console.log runs way before
+//the data comes back. The result comes back as a promise. 
+console.log(dataLondon);
+
+//async function returns a promise
+let dataLd;
+getWeatherAW(44418).then(data => {
+	dataLd = data;
+	console.log(dataLd);
+});
+
