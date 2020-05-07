@@ -123,8 +123,6 @@ getWeatherAW(44418).then(data => {
 	console.log(dataLd);
 });
 
-*/
-
 const promise = new Promise((resolve, reject) => {
 	if (true) {
 		resolve("stuff worked!");
@@ -133,7 +131,44 @@ const promise = new Promise((resolve, reject) => {
 	}
 });
 
-promise
-	.then((result) => result + "!")
-	.catch(() => console.log("errror!"))
-	.then((result3) => console.log(result3 + "!"));
+const promise2 = new Promise((resolve, reject) => {
+	setTimeout(resolve, 100, "one tenth");
+});
+
+const promise3 = new Promise((resolve, reject) => {
+	setTimeout(resolve, 1000, "one second");
+});
+
+const promise4 = new Promise((resolve, reject) => {
+	setTimeout(resolve, 3000, "three seconds");
+});
+
+Promise.all([promise, promise2, promise3, promise4]).then((values) => {
+	console.log(values);
+});
+
+// promise
+// 	.then((result) => result + "!")
+// 	.catch(() => console.log("errror!"))
+// 	.then((result3) => console.log(result3 + "!"));
+
+*/
+
+const urls = [
+	"http://jsonplaceholder.typicode.com/users",
+	"http://jsonplaceholder.typicode.com/posts",
+	"http://jsonplaceholder.typicode.com/albums",
+];
+
+Promise.all(
+	urls.map((url) => {
+		//fetch returns a promise
+		return fetch(url).then((response) => response.json());
+	})
+)
+	.then((results) => {
+		console.log(results[0]);
+		console.log(results[1]);
+		console.log(results[2]);
+	})
+	.catch(() => console.log("error"));
