@@ -91,7 +91,7 @@ function getWeather(woeid) {
 getWeather(2487956);
 
 
-// remember that async function returns a promise
+// async function returns a promise
 async function getWeatherAW(woeid){
 	try{
 		const result = await fetch("https://crossorigin.me/https://www.metaweather.com/api/location/${woeid}/");
