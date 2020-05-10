@@ -59,13 +59,13 @@ const fakeRequest = (url) => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			const rand = Math.random();
-			if (rand < 0.3) {
+			if (rand < 0.7) {
 				reject({ status: 404 });
 			} else {
 				const pages = {
 					"/users": [
 						{ id: 1, username: "Bilbo" },
-						{ id: 5, username: "tom" },
+						{ id: 5, username: "Fisher" },
 					],
 					"/about": "This is the about page!",
 				};
