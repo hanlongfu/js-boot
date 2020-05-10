@@ -1,4 +1,3 @@
-/*
 function calculateSquare(number) {
 	const promise = new Promise((resolve, reject) => {
 		setTimeout(() => {
@@ -12,13 +11,15 @@ function calculateSquare(number) {
 	return promise;
 }
 
-calculateSquare(2)
-  .then(res => console.log(res), reason => console.log(reason));   // 4
+calculateSquare(2).then(
+	(res) => console.log(res),
+	(reason) => console.log(reason)
+); // 4
 
-calculateSquare("string")
-  .then(res => console.log(res), reason => console.log(reason));   // Error
-
-
+calculateSquare("string").then(
+	(res) => console.log(res),
+	(reason) => console.log(reason)
+); // Error
 
 //promisify
 let capitalize = (text) => {
@@ -35,8 +36,7 @@ let capitalize_promise = (text) => {
 	});
 };
 
-capitalize_promise(123)
-  .then(
+capitalize_promise(123).then(
 	(res) => console.log(res),
 	(reason) => console.log(reason)
 );
@@ -67,8 +67,32 @@ calculateSquare(1)
 		(reason) => console.log(`Error occurred: ${reason}`)
 	);
 
-  */
-
 fetch("https://www.omdbapi.com/?s=batman&y=2018&apikey=6cbd1ccb")
 	.then((res) => res.json())
 	.then((data) => console.log(data));
+
+function calculateSquare(number) {
+	const promise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			if (typeof number !== "number") {
+				return reject(new Error("argument of type number is expected!"));
+			}
+			const result = number * number;
+			resolve(result);
+		});
+	});
+	return promise;
+}
+
+calculateSquare(1)
+	.then((value) => {
+		console.log(value);
+		return calculateSquare(2);
+	})
+	.then((value) => {
+		throw new Error("Something went wrong");
+		console.log(value);
+	})
+	.then(undefined, (reason) => {
+		console.log("error happended" + reason);
+	});
